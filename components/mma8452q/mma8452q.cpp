@@ -36,12 +36,13 @@ void MMA8452QComponent::writeRegister(MMA8452Q_Register reg, byte data)
 // WRITE MULTIPLE REGISTERS
 //	Write an array of "len" bytes ("buffer"), starting at register "reg", and
 //	auto-incrmenting to the next.
-void MMA8452QComponent::writeRegisters(MMA8452Q_Register reg, byte *buffer, byte len)
+void MMA8452QComponent::writeRegisters(MMA8452Q_Register reg, uint8_t *buffer, size_t len) //(MMA8452Q_Register reg, byte *buffer, byte len)
 {
 #if 1
 
-    this->write((uint8_t*)&reg, sizeof(reg), 0);
-    this->write(buffer, len);
+    //this->write((uint8_t*)&reg, sizeof(reg), 0);
+	this->write_bytes(static_cast<uint8_t>(reg), buffer, len)
+    //this->write(buffer, len);
 
 #else
 	_i2cPort->beginTransmission(_deviceAddress);
