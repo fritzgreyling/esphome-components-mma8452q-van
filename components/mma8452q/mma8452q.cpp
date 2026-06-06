@@ -61,7 +61,7 @@ byte MMA8452QComponent::readRegister(MMA8452Q_Register reg)
 #if 1
     uint8_t byte = 0;
 
-    if(!this->read_byte(reg, &byte, false)) {
+    if(!this->read_byte(reg, &byte)) {
        this->mark_failed();
        return 0;
     }
@@ -103,7 +103,7 @@ void MMA8452QComponent::readRegisters(MMA8452Q_Register reg, byte *buffer, byte 
     //memset(buffer, 0, len);
     //this->read(buffer, len);
 
-    this->read_register(reg, buffer, len, 0);
+    this->read_register(reg, buffer, len);
 
 
 
